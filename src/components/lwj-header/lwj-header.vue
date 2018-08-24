@@ -8,16 +8,23 @@
         </router-link>
         <dd class="user-btn">退出</dd>
       </template>
-      <dd class="user-btn">登陆</dd>
+      <dd class="user-btn">登录</dd>
     </dl>
+    <lwj-dialog></lwj-dialog>
   </header>
 </template>
 
 <script>// eslint-disable-next-line
   /* eslint-disable */
+import {mapGetters, mapActions} from 'vuex'
+import LwjDialog from "../../base/lwj-dialog";
+
   export default {
     name: 'lwj-header',
-    components: {},
+    components: {
+      LwjDialog
+
+    },
     data(){
       return{
         user:{}, // 获取用户数据

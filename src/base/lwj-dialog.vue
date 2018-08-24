@@ -12,6 +12,13 @@
 </template>
 <script>
 export default {
-  name: 'lwj-dialog'
+  name: 'lwj-dialog',
+  props: {
+    // 标题文本
+    headText: {
+      type: String,
+      default: '提示'
+    }
+  }
 }
 </script>
