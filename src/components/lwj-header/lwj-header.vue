@@ -2,15 +2,20 @@
   <header class="lwj-header">
     <h1 class="header">李威剑的音乐播放器</h1>
     <dl class="user">
-      <template>
+      <template v-if="user.userId">
         <router-link class="user-infor">
           <span></span>
         </router-link>
         <dd class="user-btn">退出</dd>
       </template>
-      <dd class="user-btn">登录</dd>
+      <dd v-else class="user-btn" @click="openDialog(0)">登录</dd>
     </dl>
-    <lwj-dialog></lwj-dialog>
+    <!--登录-->
+    <lwj-dialog ref="loginDialog" head-text="登录" cancleBtnText="关闭">
+      <div class="lwj-dialog-text">
+         <input type="number" autofocus placeholder="请输入网易云id"/>
+      </div>
+    </lwj-dialog>
   </header>
 </template>
 
@@ -30,7 +35,17 @@ import LwjDialog from "../../base/lwj-dialog";
         user:{}, // 获取用户数据
         uidValue: '',//记录用户id
       }
-    }
+    },
+
+methods: {
+      //打开对话框
+     openDialog(key){
+       switch(key){
+         case 0:
+              this.$refs.loginDialog.show()
+       }
+     }
+}
   }
 </script>
 
@@ -42,5 +57,12 @@ import LwjDialog from "../../base/lwj-dialog";
     width: 100%;
     height: 60px;
     border: 1px solid #999;
+    text-align: center;
+  }
+  .user-btn{
+    cursor: pointer;
+    position: relative;
+    top:-60px;
+    left: 40%;
   }
 </style>

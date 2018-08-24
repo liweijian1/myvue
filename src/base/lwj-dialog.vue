@@ -5,6 +5,14 @@
        <div class="lwj-dialog-wrapper">
          <div class="lwj-dialog-content">
            <div class="lwj-dialog-head" v-text="headText"></div>
+           <slot>
+             <div class="lwj-dialog-text" v-html="bodyText"></div>
+           </slot>
+           <div class="lwj-dialog-btn">
+             <div class="cancle-btn" @click="cancle" v-text="cancleBtnText"></div>
+             <div></div>
+             <div></div>
+           </div>
          </div>
        </div>
      </div>
@@ -18,6 +26,25 @@ export default {
     headText: {
       type: String,
       default: '提示'
+    },
+    // 内容文本
+    bodyText: {
+      type: String,
+      default: ''
+    },
+    cancleBtnText: {
+      type: String,
+      dafault: '取消'
+    }
+  },
+  data () {
+    return {
+      dialogShow: false
+    }
+  },
+  methods: {
+    show () {
+      this.dialogShow = true
     }
   }
 }
