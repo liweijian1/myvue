@@ -11,9 +11,18 @@
       <dd v-else class="user-btn" @click="openDialog(0)">登录</dd>
     </dl>
     <!--登录-->
-    <lwj-dialog ref="loginDialog" head-text="登录" cancleBtnText="关闭">
+    <lwj-dialog ref="loginDialog" head-text="登录" cancleBtnText="关闭" confirmBtnText="登录">
       <div class="lwj-dialog-text">
-         <input type="number" autofocus placeholder="请输入网易云id"/>
+         <input type="number" class="lwj-dialog-input" autofocus placeholder="请输入网易云id"/>
+      </div>
+      <div slot="btn" @click="openDialog(1)">帮助</div>
+    </lwj-dialog>
+    <lwj-dialog ref="helpDialog" head-text="登录帮助" cancleBtnText="关闭" confirmBtnText="去登录">
+      <div class="lwj-dialog-text">
+        <p>1、<a target="_blank" href="http://music.163.com">点我(http://music.163.com)</a>登录网易云官网</p>
+        <p>2、点击页面右上角的“登录”</p>
+        <p>3、点击您的头像，进入我的主页</p>
+        <p>4、复制浏览器地址栏 /user/home?id= 后面的数字（网易云 UID）</p>
       </div>
     </lwj-dialog>
   </header>
@@ -43,6 +52,11 @@ methods: {
        switch(key){
          case 0:
               this.$refs.loginDialog.show()
+               break
+         case 1:
+              this.$refs.loginDialog.hide()
+              this.$refs.helpDialog.show()
+               break
        }
      }
 }
@@ -64,5 +78,10 @@ methods: {
     position: relative;
     top:-60px;
     left: 40%;
+  }
+  .lwj-dialog-input{
+    width: 80%;
+    height: 30px;
+    font-size: 15px;
   }
 </style>
