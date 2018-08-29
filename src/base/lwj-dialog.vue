@@ -67,18 +67,23 @@ export default {
 </script>
 
 <style>
-  .lwj-dialog-head{
-    font-family:Arial;
-    justify-content: flex-start;
-    font-size: 18px;
-  }
+
   .lwj-dialog-box{
     position: relative;
-    left: 41%;
+    left: 40%;
     width: 480px;
     height: 140px;
     border: 1px solid #9999;
     border-radius: 3px;
+    background-color: #000;
+    opacity: 0.4;
+  }
+  .lwj-dialog-head{
+    font-family:Arial;
+    justify-content: flex-start;
+    font-size: 18px;
+    margin:3px 0 10px 0;
+    color: white;
   }
   .lwj-dialog-btn div{
     display: inline-block;
@@ -88,5 +93,10 @@ export default {
     border: 1px solid #9999;
     border-radius: 2px;
     cursor: pointer;
+    margin: 10px 2px 0 2px;
+    text-align: center;
+    line-height: 30px;
+    font-family: "Arial Black";
+    color: #999;
   }
 </style>

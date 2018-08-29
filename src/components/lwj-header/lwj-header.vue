@@ -83,5 +83,6 @@ methods: {
     width: 80%;
     height: 30px;
     font-size: 15px;
+    margin-bottom: 8px;
   }
 </style>
