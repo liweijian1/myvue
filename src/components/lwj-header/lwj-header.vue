@@ -11,13 +11,13 @@
       <dd v-else class="user-btn" @click="openDialog(0)">登录</dd>
     </dl>
     <!--登录-->
-    <lwj-dialog ref="loginDialog" head-text="登录" cancleBtnText="关闭" confirmBtnText="登录">
+    <lwj-dialog ref="loginDialog" head-text="登录" cancleBtnText="关闭" confirmBtnText="登录" @confirm="login">
       <div class="lwj-dialog-text">
-         <input type="number" class="lwj-dialog-input" autofocus placeholder="请输入网易云id"/>
+         <input type="number" class="lwj-dialog-input" autofocus placeholder="请输入网易云id" v-model.trim="uidValue"/>
       </div>
       <div slot="btn" @click="openDialog(1)">帮助</div>
     </lwj-dialog>
-    <lwj-dialog ref="helpDialog" head-text="登录帮助" cancleBtnText="关闭" confirmBtnText="去登录">
+    <lwj-dialog ref="helpDialog" head-text="登录帮助" cancleBtnText="关闭" confirmBtnText="去登录" @confirm="openDialog(0)">
       <div class="lwj-dialog-text">
         <p>1、<a target="_blank" href="http://music.163.com">点我(http://music.163.com)</a>登录网易云官网</p>
         <p>2、点击页面右上角的“登录”</p>
@@ -25,19 +25,22 @@
         <p>4、复制浏览器地址栏 /user/home?id= 后面的数字（网易云 UID）</p>
       </div>
     </lwj-dialog>
+    <lwj-toast></lwj-toast>
   </header>
 </template>
 
 <script>// eslint-disable-next-line
   /* eslint-disable */
 import {mapGetters, mapActions} from 'vuex'
-import LwjDialog from "../../base/lwj-dialog";
+import LwjDialog from "../../base/lwj-dialog/lwj-dialog";
+import LwjToast from "../../base/lwj-totast/lwj-toast";
+
 
   export default {
     name: 'lwj-header',
     components: {
+      LwjToast,
       LwjDialog
-
     },
     data(){
       return{
@@ -57,6 +60,14 @@ methods: {
               this.$refs.loginDialog.hide()
               this.$refs.helpDialog.show()
                break
+       }
+     },
+     // 登录
+     login(){
+       if(this.uidValue===""){
+         this.openDialog(0);
+         //this.$lwjtoast("UID不能为空");
+
        }
      }
 }
@@ -80,9 +91,20 @@ methods: {
     left: 40%;
   }
   .lwj-dialog-input{
+    position: relative;
+    top:20px;
     width: 80%;
-    height: 30px;
+    height: 40px;
     font-size: 15px;
     margin-bottom: 8px;
+  }
+  .lwj-dialog-text p,a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 8px;
+  }
+  .lwj-dialog-text p{
+    text-align: left;
+    margin-left: 35px;
   }
 </style>

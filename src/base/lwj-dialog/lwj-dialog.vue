@@ -11,7 +11,7 @@
            <div class="lwj-dialog-btn">
              <div class="cancle-btn" @click="cancle" v-text="cancleBtnText"></div>
              <slot name="btn"></slot>
-             <div class="confirm-btn"  v-text="confirmBtnText"></div>
+             <div class="confirm-btn" @click="confirm">{{confirmBtnText}}</div>
            </div>
          </div>
        </div>
@@ -61,6 +61,11 @@ export default {
     cancle () {
       this.hide()
       this.$emit('cancle')
+    },
+    // 确认事件
+    confirm () {
+      this.hide()
+      this.$emit('confirm')
     }
   }
 }
@@ -72,7 +77,7 @@ export default {
     position: relative;
     left: 40%;
     width: 480px;
-    height: 140px;
+    height: 230px;
     border: 1px solid #9999;
     border-radius: 3px;
     background-color: #000;
@@ -81,11 +86,13 @@ export default {
   .lwj-dialog-head{
     font-family:Arial;
     justify-content: flex-start;
-    font-size: 18px;
+    font-size: 22px;
     margin:3px 0 10px 0;
     color: white;
   }
   .lwj-dialog-btn div{
+    position: relative;
+    top:30px;
     display: inline-block;
     /*justify-content: flex-end; !*容器位于尾部*!*/
     width: 80px;
@@ -93,7 +100,7 @@ export default {
     border: 1px solid #9999;
     border-radius: 2px;
     cursor: pointer;
-    margin: 10px 2px 0 2px;
+    margin: 5px 2px 0 2px;
     text-align: center;
     line-height: 30px;
     font-family: "Arial Black";
