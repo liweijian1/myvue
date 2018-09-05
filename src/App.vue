@@ -1,7 +1,9 @@
 <template>
   <div id="app">
     <lwj-header></lwj-header>
-    <router-view/>
+    <router-view class="router-view"/>
+    <!--播放器-->
+    <audio></audio>
   </div>
 </template>
 
@@ -14,5 +16,13 @@ export default {
 </script>
 
 <style>
-
+   #app{
+     position: relative;
+     width: 100%;
+     height: 100%;
+   }
+  .router-view{
+    width: 100%;
+    height: 100%;
+  }
 </style>

@@ -25,7 +25,6 @@
         <p>4、复制浏览器地址栏 /user/home?id= 后面的数字（网易云 UID）</p>
       </div>
     </lwj-dialog>
-    <lwj-toast></lwj-toast>
   </header>
 </template>
 
@@ -33,13 +32,11 @@
   /* eslint-disable */
 import {mapGetters, mapActions} from 'vuex'
 import LwjDialog from "../../base/lwj-dialog/lwj-dialog";
-import LwjToast from "../../base/lwj-totast/lwj-toast";
 
 
   export default {
     name: 'lwj-header',
     components: {
-      LwjToast,
       LwjDialog
     },
     data(){
@@ -65,8 +62,8 @@ methods: {
      // 登录
      login(){
        if(this.uidValue===""){
+         this.$lwjtoast("UID不能为空");
          this.openDialog(0);
-         //this.$lwjtoast("UID不能为空");
 
        }
      }
@@ -80,9 +77,9 @@ methods: {
     top:0;
     left: 0;
     width: 100%;
-    height: 60px;
-    border: 1px solid #999;
+    height: auto;
     text-align: center;
+    overflow: hidden;
   }
   .user-btn{
     cursor: pointer;
@@ -102,6 +99,9 @@ methods: {
     color: #fff;
     text-decoration: none;
     font-size: 8px;
+  }
+  .lwj-dialog-text a:hover{
+    color: #dc143c;
   }
   .lwj-dialog-text p{
     text-align: left;
