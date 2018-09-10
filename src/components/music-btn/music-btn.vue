@@ -1,10 +1,10 @@
 <template>
   <div class="music-btn">
-    <router-link to="/music" tag="span">正在播放</router-link>
-    <router-link to="/music" tag="span">排行榜</router-link>
-    <router-link to="/music" tag="span">搜索</router-link>
-    <router-link to="/music" tag="span">我的歌单</router-link>
-    <router-link to="/music" tag="span">我听过的</router-link>
+    <router-link to="/music/playlist" tag="span">正在播放</router-link>
+    <router-link to="/music/toplist" tag="span">排行榜</router-link>
+    <router-link to="/music/search" tag="span">搜索</router-link>
+    <router-link to="/music/userlist" tag="span">我的歌单</router-link>
+    <router-link to="/music/historylist" tag="span">我听过的</router-link>
   </div>
 </template>
 
@@ -22,9 +22,6 @@
    }
   span {
     display: inline-block;
-    position: relative;
-    top: 120px;
-    left: 30px;
     width: 100px;
     height: 40px;
     text-align: center;
@@ -33,5 +30,6 @@
     border: 1px solid #9999;
     border-radius: 4px;
     cursor: pointer;
+    margin-right: 15px;
   }
 </style>

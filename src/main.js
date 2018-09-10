@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router/index'
-import store from './store'
+import store from './store/index'
 import lwjtoast from './base/lwj-totast'
 
 Vue.config.productionTip = false
