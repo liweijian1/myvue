@@ -24,7 +24,7 @@
 <style lang="less" scoped>
    .music-left{
      position: relative;
-     width: 40%;
+     width: 60%;
      height: 500px;
      left: 5%;
      top:100px;
