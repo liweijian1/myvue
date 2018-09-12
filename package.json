@@ -11,6 +11,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "acorn": "^5.7.3",
     "axios": "^0.18.0",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",

@@ -5,6 +5,10 @@ import App from './App'
 import router from './router/index'
 import store from './store/index'
 import lwjtoast from './base/lwj-totast'
+import axios from 'axios'
+
+// 网络请求
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 
