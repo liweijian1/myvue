@@ -82,6 +82,7 @@ export default {
     border-radius: 3px;
     background-color: #000;
     opacity: 0.4;
+    z-index: 999;
   }
   .lwj-dialog-head{
     font-family:Arial;

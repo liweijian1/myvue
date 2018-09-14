@@ -72,10 +72,13 @@ export default {
   .topList-content{
     width: auto;
     height: auto;
+    overflow: hidden;
     .list-item{
       display: inline-block;
       margin-right: 40px;
       text-align: center;
+      float: left;
+      width: calc(~'100% / 7');
     }
   }
 

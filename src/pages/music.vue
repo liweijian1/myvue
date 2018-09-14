@@ -28,11 +28,14 @@
      height: 500px;
      left: 5%;
      top:100px;
-     border: 1px solid #9999;
+     overflow: hidden;
      .music-btn{
        position: relative;
        left: 5%;
        top:20px;
+     }
+     .music-list{
+       height:calc(~'100% - 60px');
      }
    }
 
