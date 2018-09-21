@@ -7,14 +7,14 @@
           <span v-if="listType === 1" class="list-item">时长</span>
           <span v-else class="list-album">专辑</span>
         </div>
-        <div class="list-content">
+        <div class="list-content" @scroll = "listScroll($event)">
            <div class="list-item" v-for="(item,index) in list" :key="item.id">
-             <span class="list-num">{{index+1}}</span>
-             <div class="list-name">
+             <div class="list-num" style="display: inline-block"><span >{{index+1}}</span></div>
+             <div class="list-name" :title="item.name">
                <span>{{item.name}}</span>
              </div>
-             <span class="list-artist">{{item.singer}}</span>
-             <span class="list-album">{{item.album}}</span>
+             <div class="list-artist" :title="item.singer"><span>{{item.singer}}</span></div>
+             <div class="list-album" :title="item.album"><span>{{item.album}}</span></div>
            </div>
         </div>
       </template>
@@ -41,6 +41,43 @@ import {mapGetters} from 'vuex'
             type: Number,
             default: 0
           }
+        },
+        data(){
+          return{
+            lockUp: true, // 是否锁定滚动加载事件，默认锁定
+          }
+        },
+      watch:{
+          list(newList,oldList){
+               if(this.listType !== 2){
+                 return
+               }
+               if(newList.length !== oldList.length){
+                 this.lockUp = false
+               }else if(newList[newList.length - 1].id !== oldList.length > 0 && oldList[oldList.length - 1].id)
+               {
+                 this.lockUp = false
+               }
+             }
+          },
+        methods:{
+          // 滚动事件
+          listScroll(e){
+            if(this.listType !== 2){
+              return
+            }
+            if(this.lockUp){
+              return
+            }
+            let scrollTop = e.target.scrollTop,
+                 scrollHeight = e.target.scrollHeight,
+                 height = e.target.offsetHeight;
+            if(scrollTop+height>=scrollHeight){
+              this.lockUp = true;
+              this.$emit('pullup')
+            }
+          },
+
         }
     }
 
@@ -57,32 +94,68 @@ import {mapGetters} from 'vuex'
        margin-left: 10px;
        margin-right: 40%;
      }
+     .list-album{
+       position: relative;
+       left: -45px;
+     }
    }
    .list-content{
+     width: 100%;
+     overflow-x:hidden;
+     overflow-y:auto;
+     -webkit-overflow-scrolling: touch;
      margin: 15px 0 0 0;
-     height: 8px;
+     height: 250px;
+
      .list-item{
        margin: 0 0 20px 0;
+       border: 3px solid #efefef;
+       border-left: 0px;
+       border-right: 0px;
+       height: 40px;
+     }
+     .list-num{
+       position: relative;
+       line-height: 40px;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
      }
      .list-name{
        display: inline-block;
-       width: 25%;
+       width: 30%;
+       overflow: hidden;
+       text-overflow: ellipsis;
+       white-space: nowrap;
+       width: 10em;
+       line-height: 40px;
      }
      .list-artist{
-       margin-left: 18%;
+       display: inline-block;
+       position: relative;
+       left:22%;
+       text-align: center;
        overflow: hidden;
        text-overflow: ellipsis;
        white-space: nowrap;
        width: 20%;
-       height: 20px;
+       line-height: 40px;
      }
      .list-album{
+       display: inline-block;
        position: relative;
-       left: 20%;
-       //margin-left: 30%;
+       left: 45%;
+       text-align: center;
+       overflow: hidden; /*自动隐藏文字*/
+       text-overflow: ellipsis;/*文字隐藏后添加省略号*/
+       white-space: nowrap;/*强制不换行*/
+       width:10em;/*不允许出现半汉字截断*/
+       //width: 20%;
+       line-height: 40px;
      }
      span{
        display: inline-block;
+       text-align: center;
      }
    }
 </style>

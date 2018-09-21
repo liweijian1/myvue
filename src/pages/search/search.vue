@@ -4,7 +4,7 @@
          <span v-for="(item,index) in Artists.slice(0,5)" :key="index" @click="clickHot(item.first)">{{item.first}}</span>
          <input class="search-input" type="text" placeholder="音乐/歌手" v-model="searchValue" @keyup.enter="OnEnter"/>
        </div>
-       <music-list :list="list" :list-type="2"></music-list>
+       <music-list :list="list" :list-type="2" @pullUp="pullUpload"></music-list>
     </div>
 </template>
 
@@ -51,6 +51,19 @@ export default {
             search(this.searchValue).then(res =>{
               if(res.data.code===200){
                 this.list=formatSongs(res.data.result.songs);
+              }
+            })
+          },
+          // 滚动加载事件
+          pullUpload(){
+            this.page +=1;
+            serach(this.searchValue,this.page).then(res => {
+              if(res.data.code === 200){
+                if(!res.data.result.songs){
+                  alert('没有更多歌曲');
+                  return
+                }
+                this.list = [...this.list, ...formatSongs(res.data.result.songs)]
               }
             })
           }

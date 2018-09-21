@@ -38,7 +38,7 @@ export default {
     },
 
     created(){
-      //获取音乐排行榜
+      //获取音乐排行榜前4位
       const _getToplistDetail = getToplistDetail().then((res) =>{
          if(res.data.code===200){
            let list;
@@ -69,13 +69,17 @@ export default {
 
 </script>
 <style lang="less">
+  .topList{
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
   .topList-content{
     width: auto;
     height: auto;
     overflow: hidden;
     .list-item{
       display: inline-block;
-      margin-right: 40px;
+      margin-right: 8%;
       text-align: center;
       float: left;
       width: calc(~'100% / 7');
