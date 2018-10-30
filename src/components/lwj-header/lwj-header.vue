@@ -52,11 +52,12 @@ methods: {
        switch(key){
          case 0:
               this.$refs.loginDialog.show()
+               this.$refs.mask.style.display = 'block';
                break
          case 1:
               this.$refs.loginDialog.hide()
               this.$refs.helpDialog.show()
-               break
+              break
        }
      },
      // 登录
@@ -81,12 +82,12 @@ methods: {
     text-align: center;
     overflow: hidden;
   }
-  .user-btn{
-    cursor: pointer;
-    position: relative;
-    top:-60px;
-    left: 40%;
-  }
+  /*.user-btn{*/
+    /*cursor: pointer;*/
+    /*position: relative;*/
+    /*top:-60px;*/
+    /*left: 40%;*/
+  /*}*/
   .lwj-dialog-input{
     position: relative;
     top:20px;

@@ -1,22 +1,27 @@
 <template>
-  <!--对话框，transition用于过渡-->
-  <transition name="lwj-dialog-fade">
-     <div class="lwj-dialog-box" v-show="dialogShow">
-       <div class="lwj-dialog-wrapper">
-         <div class="lwj-dialog-content">
-           <div class="lwj-dialog-head" v-text="headText"></div>
-           <slot>
-             <div class="lwj-dialog-text" v-html="bodyText"></div>
-           </slot>
-           <div class="lwj-dialog-btn">
-             <div class="cancle-btn" @click="cancle" v-text="cancleBtnText"></div>
-             <slot name="btn"></slot>
-             <div class="confirm-btn" @click="confirm">{{confirmBtnText}}</div>
-           </div>
-         </div>
-       </div>
-     </div>
-  </transition>
+  <div>
+    <!--遮罩层-->
+    <div id="mask" v-show="dialogShow"></div>
+    <!--对话框，transition用于过渡-->
+    <transition name="lwj-dialog-fade">
+      <div class="lwj-dialog-box" v-show="dialogShow">
+        <div class="lwj-dialog-wrapper">
+          <div class="lwj-dialog-content">
+            <div class="lwj-dialog-head" v-text="headText"></div>
+            <slot>
+              <div class="lwj-dialog-text" v-html="bodyText"></div>
+            </slot>
+            <div class="lwj-dialog-btn">
+              <div class="cancle-btn" @click="cancle" v-text="cancleBtnText"></div>
+              <slot name="btn"></slot>
+              <div class="confirm-btn" @click="confirm">{{confirmBtnText}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </transition>
+  </div>
+
 </template>
 <script>
 export default {
@@ -72,7 +77,16 @@ export default {
 </script>
 
 <style>
-
+  #mask{
+    position: fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 998;
+    width: 100%;
+  }
   .lwj-dialog-box{
     position: relative;
     left: 40%;

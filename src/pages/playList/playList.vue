@@ -1,8 +1,6 @@
 <template>
   <div class="playList">
-    <music-list :list="playlist" :listType="1">
-    </music-list>
-    <div>清空列表</div>
+    <music-list :list="playlist" :listType="1"></music-list>
   </div>
 </template>
 

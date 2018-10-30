@@ -40,3 +40,34 @@ body {
     clear: both;
   }
 }
+
+
+//滚动条
+::-webkit-scrollbar{
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 5px; //纵向滚动条
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-button{
+  display: none;
+}
+::-webkit-scrollbar-thumb{
+  /*滚动条里面可以拖动的那部分*/
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track{
+  //轨道
+  display: none;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track-piece{
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  border-radius: 10px;
+}

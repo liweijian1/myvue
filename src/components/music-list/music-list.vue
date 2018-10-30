@@ -12,6 +12,9 @@
              <div class="list-num" style="display: inline-block"><span >{{index+1}}</span></div>
              <div class="list-name" :title="item.name">
                <span>{{item.name}}</span>
+               <div class="list-menu">
+                 <span class="list-menu-icon-play"></span>
+               </div>
              </div>
              <div class="list-artist" :title="item.singer"><span>{{item.singer}}</span></div>
              <div class="list-album" :title="item.album"><span>{{item.album}}</span></div>
@@ -87,6 +90,7 @@ import {mapGetters} from 'vuex'
    .music-list{
      position: relative;
      top:30px;
+     height: 100%;
    }
    .list-header{
      span{
@@ -96,23 +100,33 @@ import {mapGetters} from 'vuex'
      }
      .list-album{
        position: relative;
-       left: -45px;
+       left: -145px;
      }
    }
    .list-content{
-     width: 100%;
+     width: calc(~'100% - 10px');
+     height:calc(~'100% - 60px');
      overflow-x:hidden;
      overflow-y:auto;
      -webkit-overflow-scrolling: touch;
      margin: 15px 0 0 0;
-     height: 250px;
 
      .list-item{
        margin: 0 0 20px 0;
        border: 3px solid #efefef;
        border-left: 0px;
        border-right: 0px;
-       height: 40px;
+       height: 50px;
+       line-height: 50px;
+       &:hover{
+         cursor: pointer;
+         background: #9999;
+         .list-name{
+           .list-menu{
+             display: inline-block;
+           }
+         }
+       }
      }
      .list-num{
        position: relative;
@@ -123,39 +137,71 @@ import {mapGetters} from 'vuex'
      }
      .list-name{
        display: inline-block;
-       width: 30%;
+       //width: 60%;
        overflow: hidden;
        text-overflow: ellipsis;
        white-space: nowrap;
-       width: 10em;
+       width: 20em;
+       margin: 0;
        line-height: 40px;
      }
      .list-artist{
        display: inline-block;
        position: relative;
-       left:22%;
+       //left:22%;
        text-align: center;
        overflow: hidden;
        text-overflow: ellipsis;
        white-space: nowrap;
-       width: 20%;
+       width: 25em;
        line-height: 40px;
      }
      .list-album{
        display: inline-block;
        position: relative;
-       left: 45%;
+       //left: 45%;
        text-align: center;
        overflow: hidden; /*自动隐藏文字*/
        text-overflow: ellipsis;/*文字隐藏后添加省略号*/
        white-space: nowrap;/*强制不换行*/
-       width:10em;/*不允许出现半汉字截断*/
-       //width: 20%;
+       width:19em;/*不允许出现半汉字截断*/
        line-height: 40px;
      }
      span{
        display: inline-block;
        text-align: center;
      }
+     .list-menu{
+       display: none;
+       position: relative;
+       top: 25px;
+       left: 125px;
+       height: 36px;
+       font-size: 0;
+       transform: translateY(-50%);
+       span, a {
+         display: inline-block;
+         width: 36px;
+         height: 36px;
+         margin-right: 10px;
+         background-image: url("../../assets/img/icon_list_menu.png");
+         background-repeat: no-repeat;
+         cursor: pointer;
+       }
+       .list-menu-icon-play{
+         background-position: -80px 0;
+         &.on{
+           background-position: -80px -200px;
+           &:hover {
+             background-position: -120px -200px;
+           }
+         }
+         &:hover{
+           background-position: -120px 0;
+         }
+       }
+     }
    }
+
+
 </style>

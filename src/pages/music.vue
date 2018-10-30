@@ -13,7 +13,9 @@
     <!--播放器-->
     <div class="music-bar">
       <div class="music-bar-btns">
-        <i class="bar-icon btn-prev" title="上一曲 Ctrl+Left">sssss</i>
+        <i class="bar-icon btn-prev" title="上一曲 Ctrl+Left"></i>
+        <i class="bar-icon btn-play" title="播放暂停 Ctrl + Space"></i>
+        <i class="bar-icon btn-next" title="下一曲 Ctrl + Right"></i>
       </div>
     </div>
   </div>
@@ -58,6 +60,36 @@
      top:190px;
      width: 60%;
      height: 80px;
+     background-color: #000;
+     .bar-icon{
+       display: block;
+       background-image: url("../assets/img/player.png");
+       cursor: pointer;
+     }
+     .music-bar-btns {
+       display: flex;
+       justify-content: space-around;
+       align-items: center;
+     }
+     .btn-prev{
+       width: 19px;
+       min-width: 19px;
+       height: 20px;
+       background-position: 0 -30px;
+     }
+     .btn-play{
+       width: 21px;
+       min-width: 21px;
+       height: 29px;
+       margin: 0 50px;
+       background-position: 0 0;
+     }
+     .btn-next{
+       width: 19px;
+       min-width: 19px;
+       height: 20px;
+       background-position: 0 -52px;
+     }
    }
 
 </style>
