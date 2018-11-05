@@ -13,7 +13,7 @@
              <div class="list-name" :title="item.name">
                <span>{{item.name}}</span>
                <div class="list-menu">
-                 <span class="list-menu-icon-play"></span>
+                 <span class="list-menu-icon-play" @click.stop="selectItem(item,index)" ></span>
                </div>
              </div>
              <div class="list-artist" :title="item.singer"><span>{{item.singer}}</span></div>
@@ -27,7 +27,9 @@
 
 <script>// eslint-disable-next-line
   /* eslint-disable */
-import {mapGetters} from 'vuex'
+import {mapState,mapGetters} from 'vuex'
+import {getMusicUrl} from "../../api";
+import state from "../../store/state";
     export default {
         name: "music-list",
         props:{
@@ -49,6 +51,8 @@ import {mapGetters} from 'vuex'
           return{
             lockUp: true, // 是否锁定滚动加载事件，默认锁定
           }
+        },
+        computed:{
         },
       watch:{
           list(newList,oldList){
@@ -80,6 +84,17 @@ import {mapGetters} from 'vuex'
               this.$emit('pullup')
             }
           },
+
+          //播放暂停事件
+          selectItem(item,index){
+             getMusicUrl(item.id).then( res => {
+               if(!res.data.data[0].url){
+                 alert('当前音乐无法播放')
+               }else{
+                 this.$emit('select',item,index)
+               }
+             })
+          }
 
         }
     }

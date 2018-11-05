@@ -1,6 +1,6 @@
 <template>
   <div class="playList">
-    <music-list :list="playlist" :listType="1"></music-list>
+    <music-list :list="playlist" :listType="1" @select="selectItem"></music-list>
   </div>
 </template>
 
@@ -12,8 +12,25 @@
     components: {MusicList},
     computed:{
       ...mapGetters([
-        'playlist'
+        'palyinng',
+        'playlist',
+        'currentMusic',
+        'audioEle'
       ])
+    },
+    methods:{
+      selectItem(item,index){
+        if(item.id === this.currentMusic.id && !this.playing){
+          this.setPlaying(true)
+        }else{
+          this.setCurrentIndex(index);
+          this.setPlaying(true);
+
+        }      },
+      ...mapMutations({
+        setPlaying:'SET_PLAYING',
+        setCurrentIndex:'SET_CURRENTINDEX',
+      })
     }
   }
 </script>

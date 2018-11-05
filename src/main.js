@@ -9,8 +9,10 @@ import store from './store/index'
 import lwjtoast from './base/lwj-totast'
 import axios from 'axios'
 import VueLazyload from 'vue-lazyload'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
-
+Vue.use(ElementUI)
 // import '@/assets/css/index.less'
 require('!style-loader!css-loader!less-loader!./assets/css/index.less');
 

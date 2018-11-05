@@ -17,17 +17,31 @@ export  class Song{
   }
 }
 
+export function createTopList(music){
+  return new Song({
+    id: music.id,
+    name: music.name,
+    singer: music.ar.length>0 && filterSinger(music.ar),
+    album: music.al.name,
+    //image: music.al.picUrl,
+    duration: music.dt/1000,
+    url: `https://music.163.com/song/media/outer/url?id=${music.id}.mp3`
+  })
+}
 export function createPlayList(music) {
   return new Song({
     id:music.id,
     name:music.name,
     singer:music.artists.length > 0 && filterSinger(music.artists),
-    album:music.album.name
+    album:music.album.name,
+    //image:music.al.picUrl || null,
+    duration:music.dt/1000,
+
   })
 }
 
 
-//歌取数据格式化
+//歌曲数据格式化
 const formatSongs = function formatPlayList(list){
   let Songs=[];
   list.forEach((item) => {

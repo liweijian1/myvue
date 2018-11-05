@@ -3,6 +3,16 @@
 import {URL,defaultLimit} from '../assets/js/config.js'
 import axios from 'axios'
 
+// 获取正在播放的列表
+export function topList(idx){
+  const url = `${URL}/top/list`;
+  return axios.get(url,{
+    params: {
+      idx
+    }
+  });
+}
+
 // 排行榜列表
 export function getToplistDetail() {
   const url =  `${URL}/toplist/detail`;
@@ -32,3 +42,13 @@ export function getHottoplist() {
   }
  )
   }
+
+  //  获取歌曲地址
+ export function getMusicUrl(id){
+   const url = `${URL}/music/url`;
+   return axios.get(url, {
+     params: {
+       id
+     }
+   })
+ }

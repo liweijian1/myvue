@@ -3,13 +3,18 @@
       <lwj-header></lwj-header>
       <router-view class="router-view"/>
       <!--播放器-->
-      <audio></audio>
+      <audio ref="lwjPlayer"></audio>
     </div>
 </template>
 
 <script>// eslint-disable-next-line
   /* eslint-disable */
 import LwjHeader from './components/lwj-header/lwj-header'
+import {mapMutations,mapActions} from 'vuex'
+import {topList} from "./api";
+import {defaultSheetId} from  './assets/js/config'
+import {createTopList} from './assets/js/song'
+
 export default {
   name: 'App',
   components: {LwjHeader},
@@ -55,6 +60,14 @@ export default {
     }
   },
   created () {
+    // 获取正在播放的列表
+    topList(defaultSheetId).then(res => {
+       if(res.status === 200){
+         let list = this._formatSongs(res.data.playlist.tracks.slice(0,100));
+         this.setPlaylist({list});
+       }
+    })
+
     // 设置title
     let OriginTitle = document.title, titleTime
     document.addEventListener('visibilitychange', function () {
@@ -68,6 +81,30 @@ export default {
         }, 2000)
       }
     })
+
+    // 设置audio元素
+    this.$nextTick(() => {
+      this.setAudioele(this.$refs.lwjPlayer)
+    })
+  },
+  methods:{
+    // 歌曲数据处理
+    _formatSongs(list){
+        let ret = [];
+        list.forEach((item) => {
+            const musicData = item;
+            if(musicData.id){
+              ret.push(createTopList(musicData))
+            }
+        });
+        return ret
+    },
+    ...mapMutations({
+      setAudioele: 'SET_AUDIOELE'
+    }),
+    ...mapActions([
+      'setPlaylist'
+    ])
   }
 }
 </script>

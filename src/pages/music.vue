@@ -17,6 +17,15 @@
         <i class="bar-icon btn-play" title="播放暂停 Ctrl + Space"></i>
         <i class="bar-icon btn-next" title="下一曲 Ctrl + Right"></i>
       </div>
+      <div class="music-music">
+        <div class="music-bar-info">
+          <template v-if="currentMusic&&currentMusic.id">
+            {{currentMusic.name}}
+            <span> - {{currentMusic.singer}}</span>
+          </template>
+          <template v-else>欢迎使用mmPlayer在线音乐播放器</template>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -24,9 +33,16 @@
 <script>// eslint-disable-next-line
   /* eslint-disable */
     import MusicBtn from "../components/music-btn/music-btn";
+    import {mapGetters} from 'vuex';
     export default {
         name: 'music',
         components: {MusicBtn},
+        computed:{
+          ...mapGetters([
+            'currentIndex',
+            'currentMusic',
+          ])
+        }
 }
 </script>
 
@@ -60,7 +76,7 @@
      top:190px;
      width: 60%;
      height: 80px;
-     background-color: #000;
+     background-color: #9f9f9f;
      .bar-icon{
        display: block;
        background-image: url("../assets/img/player.png");

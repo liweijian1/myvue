@@ -4,7 +4,24 @@ const mutations = {
   // 修改audio元素
   [types.SET_AUDIOELE] (state, audioEle) {
     state.audioEle = audioEle
+  },
+  // 修改播放列表
+  [types.SET_PLAYLIST] (state, playlist) {
+    state.playlist = playlist
+  },
+  // 修改顺序列表
+  [types.SET_ORDERLIST] (state, orderlist) {
+    state.orderlist = orderlist
+  },
+  // 修改播放状态
+  [types.SET_PLAYING] (state, playing) {
+    state.playing = playing
+  },
+  // 修改当前音乐索引
+  [types.SET_CURRENTINDEX] (state, currentindex) {
+    state.currentindex = currentindex
   }
+
 }
 
 export default mutations

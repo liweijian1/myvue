@@ -1,5 +1,5 @@
 <template>
-  <div class="topList">
+  <div class="topList" v-loading="loading" element-loading-text="拼命加载中">
     <div class="topList-head">
       云音乐特色榜
     </div>
@@ -34,6 +34,7 @@ export default {
       return{
         list:[],
         hostlist:[],
+        loading:true,
       }
     },
 
@@ -41,6 +42,7 @@ export default {
       //获取音乐排行榜前4位
       const _getToplistDetail = getToplistDetail().then((res) =>{
          if(res.data.code===200){
+           this.loading = false;
            let list;
            list = res.data.list.filter(item => {
              if(item.ToplistType){
